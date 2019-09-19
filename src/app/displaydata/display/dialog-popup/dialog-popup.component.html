@@ -1,0 +1,26 @@
+<div>
+    <form #myform="ngForm" (ngSubmit)="subForm(myform)">
+        <div>
+            <div>
+                <label for="description">Description</label>
+                <input name="des" id="description" type="text" ngModel>
+            </div>
+            <div>
+                <label for="lessonscount">LessonsCount</label>
+                <input name="les" id="lessonscount" type="text" ngModel>
+            </div>
+            <div>
+                <label for="category">Category</label>
+                <input name="cat" id="category" type="text" ngModel>
+            </div>
+        </div>
+    
+        <div mat-dialog-actions>
+            
+            <button mat-button cdkFocusInitial type="submit">Save</button>
+        </div>
+    </form>
+    <button mat-button (click)="onCancel()">Cancel</button>
+</div>
+    
+

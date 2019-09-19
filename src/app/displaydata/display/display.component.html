@@ -1,0 +1,51 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+        <mat-cell *matCellDef="let course"> {{course.id}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let course"> {{course.description}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="lessonsCount">
+        <mat-header-cell *matHeaderCellDef style="padding-right: 20px;"> LessonsCount </mat-header-cell>
+        <mat-cell *matCellDef="let course" style="padding-right: 20px;"> {{course.lessonsCount}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell *matCellDef="let course"> {{course.category}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let course">
+            <button mat-icon-button [matMenuTriggerFor]="menu" style="color:black; border-style:none; background-color: white">
+                <mat-icon>more_vert</mat-icon>
+            </button>            
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="openDialog()">
+                    <mat-icon>add</mat-icon>
+                    <span>Add</span>
+                </button>
+                <button mat-menu-item (click)="onDelete(course.id)">
+                    <mat-icon>delete</mat-icon>
+                    <span>Delete</span>
+                </button>
+                <button mat-menu-item (click)="onPut(course.id, course)">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                </button>
+            </mat-menu>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>   
+</mat-table>
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
